@@ -31,13 +31,13 @@ def save_combined_station_data(df, stname):
     combine.to_csv(asksaveasfile(mode='w', **params))
     
 
-stations = ('CALVP', 'CACMP', 'Dummy Station') 
+stations = ('CALVP', 'CACMP', 'dummy Station') 
 # The "Dummy Station" is to keep the SQL quarry corect 
 # where there is only one station data we'd like to doemload
 quary = get_st_data_query(*stations)
-unix_data = caic_mysql_query(quary)
+server_data = caic_mysql_query(quary)
 
-for st in set(unix_data['staname']):
+for st in set(server_data['staname']):
 
     Tk().withdraw()
     try:
