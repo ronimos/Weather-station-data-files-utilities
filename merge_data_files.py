@@ -2,7 +2,7 @@
 """
 Created on Wed Sep 12 08:52:59 2018
 
-@author: Avalanche
+@author: Ronimo
 """
 
 import pandas as pd
@@ -17,7 +17,11 @@ def set_time_key(df, source):
 
 def get_st_data_query(*args):
     
-    return "SELECT * FROM ObsWX WHERE staname IN {0}".format(tuple(args))
+    stations = args
+    if len(stations)==1:
+        stations = str(stations).replace(',','')
+        
+    return "SELECT * FROM ObsWX WHERE staname IN {0}".format(stations)
 
 def save_combined_station_data(df, stname):
 
@@ -31,9 +35,7 @@ def save_combined_station_data(df, stname):
     combine.to_csv(asksaveasfile(mode='w', **params))
     
 
-stations = ('CALVP', 'CACMP', 'dummy Station') 
-# The "Dummy Station" is to keep the SQL quarry corect 
-# where there is only one station data we'd like to doemload
+stations = ('CALVP',) 
 quary = get_st_data_query(*stations)
 server_data = caic_mysql_query(quary)
 
