@@ -5,7 +5,6 @@ Created on Wed May 30 10:39:48 2018
 @author: Ron Simenhois
 This script check for missing data in the weather data file on Unix machine
 """
-
 import pandas as pd
 import numpy as np
 import logging
@@ -28,6 +27,8 @@ def get_quary(*args):
     stations = args
     if len(stations)==0:
         return ''
+    if len(stations)==1:
+        stations=str(stations).replace(',','')
     
     q = '''
         SELECT time
