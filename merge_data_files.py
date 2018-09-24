@@ -8,7 +8,7 @@ Created on Wed Sep 12 08:52:59 2018
 import pandas as pd
 from tkinter import Tk
 from tkinter.filedialog import askopenfile, asksaveasfile
-from sql_utills import caic_mysql_query
+from sql_utills import get_station_data
 
 def set_time_key(df, source):   
     
@@ -37,7 +37,7 @@ def save_combined_station_data(df, stname):
 
 stations = ('CALVP',) 
 quary = get_st_data_query(*stations)
-server_data = caic_mysql_query(quary)
+server_data = get_station_data(quary)
 
 for st in set(server_data['staname']):
 
