@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import logging
 import os
-from sql_utills import caic_mysql_query
+from sql_utills import get_station_data
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s %(levelname)s] (%(threadName)-9s) %(message)s',)
 logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ def check_for_missing_data(stations):
     '''
     sql_quary = get_quary(*stations)
     
-    data = caic_mysql_query(sql_quary)
+    data = get_station_data(sql_quary)
     logger.info('Weather data for stations {} is loaded from the server'.format(stations))
     for st in stations:
         logger.info('Cheking for missing data in station: {}'.format(st))
