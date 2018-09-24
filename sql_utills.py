@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO, format='[%(asctime)s %(levelname)s] (%(t
 logger = logging.getLogger(__name__)
 
 
-def caic_mysql_query(q):
+def get_station_data(q):
     '''
     This fuctrion quary from an SQL database over a ssh tunnel into a pandas Dataframe
         
